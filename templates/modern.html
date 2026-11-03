@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page { size: A4; margin: 1.5cm; }
+        body { font-family: "Helvetica", "Arial", sans-serif; color: #333; line-height: 1.4; font-size: 10pt; }
+        
+        /* Header */
+        .header { text-align: center; margin-bottom: 20px; }
+        .name { font-size: 28pt; font-weight: bold; text-transform: uppercase; margin: 0; color: #000; }
+        .title { font-size: 13pt; color: #555; margin-top: 5px; margin-bottom: 15px; }
+        
+        /* Contact Table */
+        .contact-table { width: 100%; border-collapse: collapse; font-size: 9pt; margin-bottom: 20px; }
+        .contact-table td { text-align: center; padding: 5px; color: #333; }
+        
+        /* Section Headers */
+        h2 { font-size: 12pt; text-transform: uppercase; font-weight: bold; color: #222; border-bottom: 1.5px solid #222; padding-bottom: 4px; margin-top: 20px; margin-bottom: 10px; }
+        
+        /* Text */
+        p { margin: 3px 0; }
+        .job-title { font-weight: bold; font-size: 10.5pt; }
+        .job-meta { color: #666; font-size: 9pt; margin-bottom: 5px; }
+        
+        /* Skills Table */
+        .skills-table { width: 100%; border-collapse: collapse; margin-top: 5px; }
+        .skills-table td { padding: 3px 0; font-size: 10pt; vertical-align: top; width: 33%; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="name">{{ name }}</div>
+        <div class="title">{{ title }}</div>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <table class="contact-table">
+        <tr>
+            <td>&#9742; {{ phone }}</td>
+            <td>&#9993; {{ email }}</td>
+            <td>&#127968; {{ location }}</td>
+        </tr>
+    </table>
+
+    <!-- ABOUT ME -->
+    <h2>About Me</h2>
+    <p style="text-align: justify;">{{ summary }}</p>
+
+    <!-- WORK EXPERIENCE -->
+    <h2>Work Experience</h2>
+    <div>
+        <p class="job-title">{{ job_title }}</p>
+        <p class="job-meta">{{ company }} | {{ job_dates }}</p>
+        
+        <!-- This loop turns lines starting with '-' into bullet points -->
+        {% for line in job_desc.split('\n') %}
+            {% if line.strip() %}
+                {% if line.strip().startswith('-') %}
+                    <ul style="margin: 3px 0; padding-left: 20px;">
+                        <li>{{ line.strip()[1:] }}</li>
+                    </ul>
+                {% else %}
+                    <p>{{ line }}</p>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- EDUCATION -->
+    <h2>Education</h2>
+    {% for line in education.split('\n') %}
+        {% if line.strip() %}
+            <p>{{ line }}</p>
+        {% endif %}
+    {% endfor %}
+
+    <!-- SKILLS -->
+    <h2>Skills</h2>
+    <table class="skills-table">
+        {% for skill in skills.split(',') %}
+            {% if loop.index0 % 3 == 0 %}<tr>{% endif %}
+            <td>&#8226; {{ skill.strip() }}</td>
+            {% if loop.index % 3 == 0 or loop.last %}</tr>{% endif %}
+        {% endfor %}
+    </table>
+
+</body>
+</html>

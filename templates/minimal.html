@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page { size: A4; margin: 3cm; }
+        body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #2d3748; line-height: 1.8; }
+        h1 { font-weight: 300; font-size: 36px; margin-bottom: 5px; color: #000; }
+        .contact { font-size: 13px; color: #718096; margin-bottom: 40px; letter-spacing: 1px; }
+        h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: #a0aec0; margin-top: 30px; margin-bottom: 15px; }
+        .section-content { font-size: 14px; }
+        .summary { font-size: 16px; line-height: 1.8; margin-bottom: 30px; color: #1a202c; }
+    </style>
+</head>
+<body>
+    <h1>{{ name }}</h1>
+    <div class="contact">
+        {{ email }} &nbsp;&middot;&nbsp; {{ phone }}
+    </div>
+
+    <div class="summary">
+        {{ summary }}
+    </div>
+
+    <h2>Skills</h2>
+    <div class="section-content">
+        {{ skills }}
+    </div>
+
+    <h2>Experience</h2>
+    <div class="section-content">
+        {{ experience }}
+    </div>
+</body>
+</html>

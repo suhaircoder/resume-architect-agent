@@ -1,0 +1,7 @@
+gradio
+groq
+jinja2
+xhtml2pdf
+python-dotenv
+markdown
+python-docx
